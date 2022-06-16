@@ -1,12 +1,25 @@
 package fr.almeri.beerboard.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
+
+//@Entity & @Table: j'indique la table qui correspond à l'objet Pays
+@Entity
+@Table(name="pays")
 
 public class Pays {
 
     //ATTRIBUTS
+    //@Id j'indique que l'attribut ci-après est une clef primaire
+    @Id
+    @Column(name="nom_pays")
     private String nomPays;
+    @Column(name="consommation")
     private  Double consomation;
+    @Column(name="production")
     private Double production;
 
     //CONSTRUCTEUR
