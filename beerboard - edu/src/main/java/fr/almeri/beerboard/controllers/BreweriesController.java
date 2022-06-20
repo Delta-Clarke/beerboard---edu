@@ -21,16 +21,9 @@ public class BreweriesController {
     public String getListBreweries(Model pModel){
         pModel.addAttribute("prenom", "Leo");
 
-
         ArrayList<Brasserie> listBrasserieFromDatabase = (ArrayList<Brasserie>) brasserieRepository.findAll();
         pModel.addAttribute("listBrasserie", listBrasserieFromDatabase);
 
-
-
         return "breweries";
-
-
-
     }
-
 }
