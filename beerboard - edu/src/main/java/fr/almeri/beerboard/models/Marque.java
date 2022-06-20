@@ -1,11 +1,23 @@
 package fr.almeri.beerboard.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Objects;
+
+@Entity
+@Table(name = "marque")
 
 public class Marque {
 
     //ATTRIBUTS
+    @Id
+    @Column(name = "nom_marque")
     private String nomMarque;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brasserie")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private  Brasserie brasserie;
 
     //CONSTRUCTEUR

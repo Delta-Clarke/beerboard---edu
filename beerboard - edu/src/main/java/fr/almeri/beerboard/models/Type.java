@@ -1,14 +1,30 @@
 package fr.almeri.beerboard.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@Entity
+@Table(name = "type")
 public class Type {
 
+    @Id
+    @Column(name = "no_type")
     //ATTRIBUTS
     private Integer noType;
+
+    @Column(name = "nom_type")
     private  String nomType;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "fermentation")
     private String fermentation;
+
+    @Column(name = "commentaire")
     private String commentaire;
 
     //CONSTRUCTEUR
