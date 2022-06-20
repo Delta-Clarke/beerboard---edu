@@ -24,7 +24,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Les Brasseries</h1>
+                <h1 class="mt-4">Les Bières</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active"></li>
                 </ol>
@@ -51,9 +51,9 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="biere :${listBiere}">
-                                    <td th:text="${biere.getNomMarque()}">...</td>
+                                    <td th:text="${biere.getMarque().getNomMarque()}">...</td>
                                     <td th:text="${biere.version}">...</td>
-                                    <td th:text="${biere.noType}">...</td>
+                                    <td th:text="${biere.getType().getNomType()}">...</td>
                                     <td th:text="${biere.couleurBiere}">...</td>
                                     <td th:text="${biere.tauxAlcool}">...</td>
                                     <td th:text="${biere.caracteristique}">...</td>

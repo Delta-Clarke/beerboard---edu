@@ -1,6 +1,9 @@
 package fr.almeri.beerboard.controllers;
 
+import fr.almeri.beerboard.repositories.BiereRepository;
+import fr.almeri.beerboard.repositories.BrasserieRepository;
 import fr.almeri.beerboard.repositories.PaysRepository;
+import fr.almeri.beerboard.repositories.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,15 @@ public class IndexController {
     @Autowired
     private PaysRepository paysRepository;
 
+    @Autowired
+    private BiereRepository biereRepository;
+
+    @Autowired
+    private BrasserieRepository brasserieRepository;
+
+    @Autowired
+    private RegionRepository regionRepository;
+
     @GetMapping("/")
     public String home(Model pModel, HttpSession pSession){
         pModel.addAttribute("bieres", 328);
@@ -28,15 +40,16 @@ public class IndexController {
         pModel.addAttribute("updated", dtf.format(LocalDateTime.now()));
 
         //répartition des brasserie par région
-        ArrayList<String> labelsPieChart = new ArrayList<>();
-        labelsPieChart.add("Label 1");
-        labelsPieChart.add("Label 2");
+        ArrayList<String> labelsPieChart = regionRepository.getNomRegionAsc();
+        ArrayList<String> datasPieChart = regionRepository.getNbRegion();
         pModel.addAttribute("labelsPieChart", labelsPieChart);
-        pModel.addAttribute("datasPieChart", new int[]{2,9});
+        pModel.addAttribute("datasPieChart", datasPieChart);
 
         //Nombre de bières par taux alcool
-        pModel.addAttribute("labelsAreaChart", new String[]{"2.6", "5", "7.5"});
-        pModel.addAttribute("datasAreaChart", new int[]{1,50,15});
+        ArrayList<String> labelsAreaChart = biereRepository.getTauxAlcool();
+        ArrayList<Double> datasAreaChart = biereRepository.getTauxAlcoolGroup();
+        pModel.addAttribute("labelsAreaChart", labelsAreaChart);
+        pModel.addAttribute("datasAreaChart", datasAreaChart );
 
         //Consomation & production de bière par pays
         ArrayList<String> labelsBarChart = paysRepository.getNomPaysAsc();
@@ -47,15 +60,16 @@ public class IndexController {
         pModel.addAttribute("datasProduction", datasProduction);
 
         //Nombre de marque référencé par brasserie
-        pModel.addAttribute("labelsBarChart1", new String[]{"Brasserie 1", "Brasserie 2"});
-        pModel.addAttribute("datasBarChart1", new int[]{5,2});
+        ArrayList<String> labelsBarChart1 = brasserieRepository.getNomBrasserieAsc();
+        ArrayList<String> datasBarChart1 = brasserieRepository.getNbMarque();
+        pModel.addAttribute("labelsBarChart1", labelsBarChart1);
+        pModel.addAttribute("datasBarChart1", datasBarChart1);
 
         //Nombre de versions par marque
-        ArrayList<String> labelsBarChart2 = new ArrayList<>();
-        labelsBarChart2.add("Marque 1");
-        labelsBarChart2.add("Marque 2");
+        ArrayList<String> labelsBarChart2 = biereRepository.getNomBiere();
+        ArrayList<Integer> datasBarChart2 = biereRepository.getNbVersion();
         pModel.addAttribute("labelsBarChart2", labelsBarChart2);
-        pModel.addAttribute("datasBarChart2", new int[]{1,4});
+        pModel.addAttribute("datasBarChart2", datasBarChart2);
 
         return "index";
     }

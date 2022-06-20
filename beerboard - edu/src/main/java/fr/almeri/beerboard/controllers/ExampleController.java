@@ -30,6 +30,9 @@ public class ExampleController {
     @Autowired
     private RegionRepository regionRepository;
 
+    @Autowired
+    private BiereRepository biereRepository;
+
 
 
     //Permet de définir une route appelée avec la méthode GET ("directement via l'URL")
@@ -74,6 +77,9 @@ public class ExampleController {
 
         ArrayList<Region> listRegionFromDatabase = (ArrayList<Region>) regionRepository.findAll();
         pModel.addAttribute("listRegion", listRegionFromDatabase);
+
+        ArrayList<Biere> bieres = (ArrayList<Biere>) biereRepository.findAll();
+        System.out.println(bieres.get(0).getMarque());
 
 
         //Méthode permettant d'indiquer quelle page HTML on renvoie

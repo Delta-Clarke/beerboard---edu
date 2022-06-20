@@ -19,7 +19,7 @@ public class BreweriesController {
 
     @GetMapping("/breweries")
     public String getListBreweries(Model pModel){
-        pModel.addAttribute("prenom", "Leo");
+        pModel.addAttribute("prenom", "Léo DAUBORD");
 
         ArrayList<Brasserie> listBrasserieFromDatabase = (ArrayList<Brasserie>) brasserieRepository.findAll();
         pModel.addAttribute("listBrasserie", listBrasserieFromDatabase);
