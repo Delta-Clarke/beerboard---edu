@@ -32,42 +32,30 @@
         <span th:text="'Bonjour ' +${prenom}"></span>
 
 
-            <style type="text/css">
-                .tftable {font-size:22px;color:#fbfbfb;width:100%;border-width: 1px;border-color: #686767;border-collapse: collapse;border-radius: 15px}
-                .tftable th {font-size:22px;background-color:#171515;border-width: 1px;padding: 8px;border-style: solid;border-color: #686767;text-align:left;}
-                .tftable tr {background-color:#2f2f2f;}
-                .tftable td {font-size:16px;border-width: 1px;padding: 8px;border-style: solid;border-color: #686767;}
-                .tftable tr:hover {background-color:#171515;}
-            </style>
-            <table class="tftable" border="1">
-                <tr>
-                    <th>Nom du pays</th>
-                    <th>Consommation</th>
-                    <th>Production</th>
-                </tr>
-                <tr th:each="pays :${listPays}">
-                    <td th:text="${pays.nomPays}">...</td>
-                    <td th:text="${pays.consomation}">...</td>
-                    <td th:text="${pays.production}">...</td>
-                </tr>
-            </table>
-<!--            </br>-->
-
-<!--            <table class="tftable" border="1">-->
-<!--                <tr>-->
-<!--                    <th>Code brasserie</th>-->
-<!--                    <th>Nom brasserie</th>-->
-<!--                    <th>Ville brasserie</th>-->
-<!--                    <th>Region brasserie</th>-->
-<!--                </tr>-->
-<!--                <tr th:each="brasserie :${listBrasserie}">-->
-<!--                <td th:text="${brasserie.getCodeBrasserie()}">...</td>-->
-<!--                <td th:text="${brasserie.nomBrasserie}">...</td>-->
-<!--                <td th:text="${brasserie.ville}">...</td>-->
-<!--                <td th:text="${brasserie.region}">...</td>-->
-<!--                </tr>-->
-<!--            </table>-->
-
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Liste Pays
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                        <tr>
+                            <th>Nom du pays</th>
+                            <th>Consommation</th>
+                            <th>Production</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="pays :${listPays}">
+                            <td th:text="${pays.nomPays}">...</td>
+                            <td th:text="${pays.consomation}">...</td>
+                            <td th:text="${pays.production}">...</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         </div>
     </main>
