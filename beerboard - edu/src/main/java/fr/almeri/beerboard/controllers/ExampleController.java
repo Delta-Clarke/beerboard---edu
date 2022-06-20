@@ -36,7 +36,7 @@ public class ExampleController {
     //Ici localhost:8888/example
     @GetMapping("/example")
     public String getPageExample(Model pModel){
-        pModel.addAttribute("prenom", "Marie");
+        pModel.addAttribute("prenom", "Leo");
 
         Pays pays = new Pays();
         pays.setNomPays("France");
@@ -44,14 +44,14 @@ public class ExampleController {
         pays.setProduction(190.9);
 
         Pays pays1 = new Pays();
-        pays.setNomPays("Allemagne");
-        pays.setConsomation(265.7);
-        pays.setProduction(456.9);
+        pays1.setNomPays("Allemagne");
+        pays1.setConsomation(265.7);
+        pays1.setProduction(456.9);
 
         Pays pays2 = new Pays();
-        pays.setNomPays("Angleterre");
-        pays.setConsomation(132.3);
-        pays.setProduction(98.7);
+        pays2.setNomPays("Angleterre");
+        pays2.setConsomation(132.3);
+        pays2.setProduction(98.7);
 
         ArrayList<Pays> listPays = new ArrayList<>();
         listPays.add(pays);

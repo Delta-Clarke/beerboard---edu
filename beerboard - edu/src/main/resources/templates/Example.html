@@ -24,18 +24,14 @@
     <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Page exemple</h1>
+            <h1 class="mt-4">Les Pays</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Sous-titre</li>
+                <li class="breadcrumb-item active"><!-- Sous-Titre --></li>
             </ol>
         <div class="container-fluid px-4">
         <span th:text="'Bonjour ' +${prenom}"></span>
-            <h3>Mon pays</h3>
-            <span th:text="${pays}"></span>
-            Nom du pays : <span th:text="${pays.nomPays}"></span></br>
-            Consommation : <span th:text="${pays.getConsomation()} + 'L/an/habitant'"></span> <br>
-            Production : <span th:text="${pays.getProduction()} + 'L/Hab'"></span> <br>
-            <h2>________________________________________________________________________________________________</h2><br>
+
+
             <style type="text/css">
                 .tftable {font-size:22px;color:#fbfbfb;width:100%;border-width: 1px;border-color: #686767;border-collapse: collapse;border-radius: 15px}
                 .tftable th {font-size:22px;background-color:#171515;border-width: 1px;padding: 8px;border-style: solid;border-color: #686767;text-align:left;}
@@ -49,28 +45,28 @@
                     <th>Consommation</th>
                     <th>Production</th>
                 </tr>
-                <tr th:each="pays :${listPays}"></tr>
+                <tr th:each="pays :${listPays}">
                     <td th:text="${pays.nomPays}">...</td>
                     <td th:text="${pays.consomation}">...</td>
                     <td th:text="${pays.production}">...</td>
                 </tr>
             </table>
-            <h2>________________________________________________________________________________________________</h2><br>
+<!--            </br>-->
 
-            <table class="tftable" border="1">
-                <tr>
-                    <th>Code brasserie</th>
-                    <th>Nom brasserie</th>
-                    <th>Ville brasserie</th>
-                    <th>Region brasserie</th>
-                </tr>
-                <tr th:each="pays :${listBrasserie}"></tr>
-                <td th:text="${brasserie.codeBrasserie}">...</td>
-                <td th:text="${brasserie.nomBrasserie}">...</td>
-                <td th:text="${brasserie.ville}">...</td>
-                <td th:text="${brasserie.region}">...</td>
-                </tr>
-            </table>
+<!--            <table class="tftable" border="1">-->
+<!--                <tr>-->
+<!--                    <th>Code brasserie</th>-->
+<!--                    <th>Nom brasserie</th>-->
+<!--                    <th>Ville brasserie</th>-->
+<!--                    <th>Region brasserie</th>-->
+<!--                </tr>-->
+<!--                <tr th:each="brasserie :${listBrasserie}">-->
+<!--                <td th:text="${brasserie.getCodeBrasserie()}">...</td>-->
+<!--                <td th:text="${brasserie.nomBrasserie}">...</td>-->
+<!--                <td th:text="${brasserie.ville}">...</td>-->
+<!--                <td th:text="${brasserie.region}">...</td>-->
+<!--                </tr>-->
+<!--            </table>-->
 
         </div>
         </div>

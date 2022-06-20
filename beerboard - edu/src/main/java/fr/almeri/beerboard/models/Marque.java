@@ -16,7 +16,7 @@ public class Marque {
     private String nomMarque;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brasserie")
+    @JoinColumn(name = "code_brasserie")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private  Brasserie brasserie;
 
