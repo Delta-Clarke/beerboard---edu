@@ -23,6 +23,10 @@ public class Marque {
     //CONSTRUCTEUR
     public Marque() {}
 
+    public Marque(String nomMarque){
+        this.nomMarque=nomMarque;
+    }
+
     //GETTERS & SETTERS
     public String getNomMarque() {
         return nomMarque;

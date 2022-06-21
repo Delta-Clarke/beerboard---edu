@@ -23,6 +23,11 @@ public class BiereId implements Serializable {
     public BiereId() {
     }
 
+    public BiereId(String nomMarque, String version){
+        this.marque=new Marque(nomMarque);
+        this.version=version;
+    }
+
     public Marque getMarque() {
         return marque;
     }
