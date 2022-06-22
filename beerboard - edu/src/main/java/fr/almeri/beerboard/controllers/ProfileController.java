@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ProfileController {
 
-    @GetMapping("TODO")
+    @GetMapping("/profile")
     public String profile(Model pModel){
         /*TODO*/
-        return "";
+        return "profile";
     }
 }

@@ -26,4 +26,8 @@ public interface BiereRepository extends CrudRepository<Biere, BiereId> {
     //Nombre de versions par marque
     @Query("select count(b.version) from Biere b group by b.marque.nomMarque order by b.marque.nomMarque asc")
     public ArrayList<Integer> getNbVersion();
+
+
+    @Query("select b from Biere b where b.marque.brasserie.codeBrasserie = :code order by b.marque.nomMarque, b.version asc")
+    public ArrayList<Biere> getMarqueVersionByCodeBrasserie(String code);
 }

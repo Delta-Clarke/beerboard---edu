@@ -17,4 +17,7 @@ public interface BrasserieRepository extends CrudRepository <Brasserie, String> 
 
     @Query("select count(m.nomMarque) from Marque m group by m.brasserie.nomBrasserie order by m.brasserie.nomBrasserie asc")
     public ArrayList<String> getNbMarque();
+
+
+
 }
