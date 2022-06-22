@@ -66,7 +66,7 @@ public class IndexController {
         pModel.addAttribute("datasBarChart1", datasBarChart1);
 
         //Nombre de versions par marque
-        ArrayList<String> labelsBarChart2 = biereRepository.getNomBiere();
+        ArrayList<String> labelsBarChart2 = (ArrayList<String>) biereRepository.getNomBiere();
         ArrayList<Integer> datasBarChart2 = biereRepository.getNbVersion();
         pModel.addAttribute("labelsBarChart2", labelsBarChart2);
         pModel.addAttribute("datasBarChart2", datasBarChart2);

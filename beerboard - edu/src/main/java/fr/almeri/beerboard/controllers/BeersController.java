@@ -2,14 +2,11 @@ package fr.almeri.beerboard.controllers;
 
 import fr.almeri.beerboard.models.Biere;
 import fr.almeri.beerboard.models.BiereId;
-import fr.almeri.beerboard.models.Brasserie;
 import fr.almeri.beerboard.repositories.BiereRepository;
-import fr.almeri.beerboard.repositories.BrasserieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -34,8 +31,10 @@ public class BeersController {
 
     @GetMapping("/see-beer")// /see-beer?marque={marque}&version={version}
     public String getBeersByCode(Model pModel, @RequestParam(required = true) String marque, @RequestParam(required = true) String version){
+        //On récupére en bdd la biere dont l'ID (IdBiere) est = au code passé dans l'URL (http://localhost:8888/see-beer)
         Biere biere = biereRepository.findById(new BiereId(marque, version)).orElseThrow();
+        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
         pModel.addAttribute("biere", biere);
-        return "beer";
+        return "see-beer";
     }
 }

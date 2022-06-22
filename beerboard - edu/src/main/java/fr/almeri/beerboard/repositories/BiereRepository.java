@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public interface BiereRepository extends CrudRepository<Biere, BiereId> {
@@ -18,7 +19,7 @@ public interface BiereRepository extends CrudRepository<Biere, BiereId> {
     public ArrayList<Double> getTauxAlcoolGroup();
 
     @Query("select b.marque.nomMarque from Biere b group by b.marque.nomMarque order by b.marque.nomMarque asc")
-    public ArrayList<String> getNomBiere();
+    public List<String> getNomBiere();
 
     @Query("select b.tauxAlcool from Biere b group by b.tauxAlcool order by b.tauxAlcool asc")
     public ArrayList<String> getTauxAlcool();
@@ -30,4 +31,5 @@ public interface BiereRepository extends CrudRepository<Biere, BiereId> {
 
     @Query("select b from Biere b where b.marque.brasserie.codeBrasserie = :code order by b.marque.nomMarque, b.version asc")
     public ArrayList<Biere> getMarqueVersionByCodeBrasserie(String code);
+
 }

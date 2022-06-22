@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BEERBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link th:href="@{~/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{~/css/custom.css}" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Brasserie</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><em
+            class="fas fa-bars"></em></button>
+</nav>
+<div id="layoutSidenav">
+    <div th:insert="~{/left_bar}"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4"><span th:utext="${biere.marque.nomMarque}"></span></h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active"></li>
+                </ol>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-house me-1"></i>
+                                Brasserie
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row input-form">
+                                            <label for="nomDeLaMarque" class="col-4">
+                                                Nom de la marque
+                                            </label>
+                                            <input disabled id="nomDeLaMarque" class="col-8" th:value="${biere.marque.nomMarque}">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="IdentifiantDeLaBrasserie" class="col-4">
+                                                Identifiant de la brasserie
+                                            </label>
+                                            <input disabled id="IdentifiantDeLaBrasserie" class="col-8" th:value="${biere.getMarque().getBrasserie().getCodeBrasserie()}">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="nomBrasserie" class="col-4">
+                                                Nom de la brasserie
+                                            </label>
+                                            <input disabled id="nomBrasserie" class="col-8" th:value="${biere.getMarque().getBrasserie().getNomBrasserie()}">
+                                        </div> <div class="row input-form">
+                                            <label for="ville" class="col-4">
+                                                Ville
+                                            </label>
+                                            <input disabled id="ville" class="col-8" th:value="${biere.getMarque().getBrasserie().ville}">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="region" class="col-4">
+                                                Région
+                                            </label>
+                                            <input disabled id="region" class="col-8" th:value="${biere.getMarque().getBrasserie().region}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer small text-muted"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-list me-1"></i>
+                                Détail
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row input-form">
+                                            <label for="version" class="col-4">
+                                                Version
+                                            </label>
+                                            <input disabled id="version" class="col-8" th:value="${biere.version}">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="couleurBiere" class="col-4">
+                                                Couleur de la bière
+                                            </label>
+                                            <input disabled id="couleurBiere" class="col-8" th:value="${biere.couleurBiere}">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="tauxAlccol" class="col-4">
+                                                Taux alcool
+                                            </label>
+                                            <input disabled id="tauxAlccol" class="col-8" th:value="${biere.tauxAlcool} != null ? ${biere.tauxAlcool}+' %' : '0.0 %'">
+                                        </div>
+                                        <div class="row input-form" th:if="${biere.caracteristique}">
+                                            <label for="caracteristique" class="col-4">
+                                                Caractéristique
+                                            </label>
+                                            <textarea disabled id="caracteristique" class="col-8" th:text="${biere.caracteristique}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer small text-muted"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-beer me-1"></i>
+                                Type de bière
+                            </div>
+                            <div class="card-body">
+                                <div class="row input-form">
+                                    <label for="typeBiere" class="col-4">
+                                        Type de bière
+                                    </label>
+                                    <input disabled id="typeBiere" class="col-8" th:value="${biere.getType().getNomType()}">
+                                </div>
+                                <div class="row input-form">
+                                    <label for="description" class="col-4">
+                                        Description
+                                    </label>
+                                    <input disabled id="description" class="col-8" th:value="${biere.getType().getDescription()}">
+                                </div>
+                                <div class="row input-form">
+                                    <label for="fermentation" class="col-4">
+                                        Fermentation
+                                    </label>
+                                    <input disabled id="fermentation" class="col-8" th:value="${biere.getType().getFermentation()}">
+                                </div>
+                                <div class="row input-form" th:if="${biere.getType().getCommentaire()}">
+                                    <label for="commentaire" class="col-4">
+                                        Commentaire
+                                    </label>
+                                    <textarea disabled id="commentaire" class="col-8" th:text="${biere.getType().getCommentaire()}"></textarea>
+                                </div>
+                            </div>
+                            <div class="card-footer small text-muted"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div th:insert="~{/footer}"></div>
+    </div>
+</div>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="js/scripts.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" crossorigin="anonymous"></script>-->
+<!--<script th:inline="javascript">-->
+<!--  //Get values from JAVA controller to pass to js-->
+<!--  var labelsBarChart = [[${labelsBarChart}]];-->
+<!--  var labelsPieChart = [[${labelsPieChart}]];-->
+<!--  var datasPieChart = [[${datasPieChart}]];-->
+
+<!--</script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script th:src="@{~/js/scripts.js}"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" crossorigin="anonymous"></script>-->
+<!--<script src="assets/dashboard/chart-area-demo.js"></script>-->
+<!--<script src="assets/dashboard/chart-bar-demo.js"></script>-->
+<!--<script src="assets/dashboard/chart-pie-demo.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script th:src="@{~/js/datatables-simple-demo.js}"></script>
+</body>
+</html>
