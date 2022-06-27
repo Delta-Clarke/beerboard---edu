@@ -1,0 +1,7 @@
+
+B
+java:S1905/",Remove this unnecessary cast to "ArrayList".(ÙâÄÿ
+V	java:S1259"<This block of commented-out lines of code should be removed.(”‚ô¶ùÿÿÿÿ
+V
+java:S4684A"@Replace this persistent entity with a simple POJO or DTO object.(×æ
+V	java:S125C"<This block of commented-out lines of code should be removed.(”‚ô¶ùÿÿÿÿ

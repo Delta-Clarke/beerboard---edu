@@ -43,6 +43,7 @@ public class Biere {
     //CONSTRUCTEUR
     public Biere() {}
 
+
     //GETTERS & SETTERS
     public Marque getMarque() {
         return marque;
