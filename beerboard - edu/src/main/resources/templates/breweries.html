@@ -30,7 +30,9 @@
                 </ol>
                 <div class="container-fluid px-4">
                     <span th:text="'Bonjour ' +${prenom}"></span>
+                    <div class="alert alert-success" role="alert" th:text="${messageSucces}" th:if="${messageSucces}">
 
+                    </div>
 
                     <div class="card mb-4">
                         <div class="card-header">

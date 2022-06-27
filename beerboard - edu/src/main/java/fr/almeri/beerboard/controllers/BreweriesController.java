@@ -6,12 +6,12 @@ import fr.almeri.beerboard.models.Brasserie;
 import fr.almeri.beerboard.models.Region;
 import fr.almeri.beerboard.repositories.BiereRepository;
 import fr.almeri.beerboard.repositories.BrasserieRepository;
+import fr.almeri.beerboard.repositories.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,9 @@ public class BreweriesController {
 
     @Autowired
     private BiereRepository biereRepository;
+
+    @Autowired
+    private RegionRepository regionRepository;
 
     @GetMapping("/breweries")
     public String getListBreweries(Model pModel){
@@ -47,4 +50,37 @@ public class BreweriesController {
 
         return "see-brewery";
     }
+
+    @GetMapping("/add-brewery")
+    public String setBrewery(Model pModel){
+        //On récupére en bdd la brasserie dont l'ID (codeBrasserie) est = au code passé dans l'URL (http://localhost:8888/see-brewery/ache)
+//        Brasserie brasserie = brasserieRepository.findById(code).orElseThrow();
+        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
+//        pModel.addAttribute("brasserieDetail", brasserie);
+        ArrayList<Region> listRegionFromDatabase = (ArrayList<Region>) regionRepository.findAll();
+        pModel.addAttribute("listRegion", listRegionFromDatabase);
+        return "add-brewery";
+    }
+    @PostMapping("/add-brewery")
+    public String addBrewery(Model pModel, @ModelAttribute Brasserie brasserie, RedirectAttributes redirectAttributes){
+        //On récupére en bdd la brasserie dont l'ID (codeBrasserie) est = au code passé dans l'URL (http://localhost:8888/see-brewery/ache)
+//        Brasserie brasserie = brasserieRepository.findById(code).orElseThrow();
+        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
+//        pModel.addAttribute("brasserieDetail", brasserie);
+        // On vérifie si l'identifiant existe
+        if (brasserieRepository.existsById(brasserie.getCodeBrasserie())){
+            // S'il existe, on renvoie un message d'erreur.
+            redirectAttributes.addFlashAttribute("messageErreur", "L'identifiant existe déjà.");
+            // On redirige vers le formulaire d'ajout
+            return "redirect:/add-brewery";
+        }else {
+            // Sinon On enregistre dans la BDD
+            brasserieRepository.save(brasserie);
+            // Envoie d'un message de succées
+            redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été enregistrée.");
+            // Redirige vers la liste des brasseries
+            return "redirect:/breweries";
+        }
+    }
+
 }

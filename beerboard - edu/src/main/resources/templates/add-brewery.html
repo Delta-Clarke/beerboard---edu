@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BEERBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link th:href="@{~/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{~/css/custom.css}" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Brasserie</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+            class="fas fa-bars"></i></button>
+</nav>
+<div id="layoutSidenav">
+    <div th:insert="~{/left_bar}"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Ajouter une brasserie</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active"></li>
+                </ol>
+                <div class="alert alert-danger" role="alert" th:text="${messageErreur}" th:if="${messageErreur}">
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-house me-1"></i>
+                                Brasserie
+                            </div>
+
+                            <form method="post" th:action="@{/add-brewery}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row input-form">
+                                            <label for="codeBrasserie" class="col-4">
+                                                Identifiant de la brasserie
+                                            </label>
+                                            <input id="codeBrasserie" name="codeBrasserie" class="col-8">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="nomBrasserie" class="col-4">
+                                                Nom de la brasserie
+                                            </label>
+                                            <input id="nomBrasserie" name="nomBrasserie" class="col-8">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="ville" class="col-4">
+                                                Ville
+                                            </label>
+                                            <input id="ville" name="ville" class="col-8">
+                                        </div>
+                                        <div class="row input-form">
+                                            <label for="region" class="col-4">
+                                                Région
+                                            </label>
+                                            <select  id="region" name="region" class="col-8">
+                                                <option th:each="r:${listRegion}" th:value="${r.getNomRegion()}" th:utext="${r.getNomRegion()}"></option>
+                                            </select>
+
+                                        </div>
+                                        <button type="submit" value="Add">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="card-footer small text-muted"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div th:insert="~{/footer}"></div>
+    </div>
+</div>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="js/scripts.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" crossorigin="anonymous"></script>-->
+<!--<script th:inline="javascript">-->
+<!--  //Get values from JAVA controller to pass to js-->
+<!--  var labelsBarChart = [[${labelsBarChart}]];-->
+<!--  var labelsPieChart = [[${labelsPieChart}]];-->
+<!--  var datasPieChart = [[${datasPieChart}]];-->
+
+<!--</script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script th:src="@{~/js/scripts.js}"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" crossorigin="anonymous"></script>-->
+<!--<script src="assets/dashboard/chart-area-demo.js"></script>-->
+<!--<script src="assets/dashboard/chart-bar-demo.js"></script>-->
+<!--<script src="assets/dashboard/chart-pie-demo.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script th:src="@{~/js/datatables-simple-demo.js}"></script>
+</body>
+</html>
