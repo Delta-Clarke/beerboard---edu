@@ -37,6 +37,7 @@
                 <i class="fas fa-house me-1"></i>
                 Brasserie
               </div>
+              <form method="post" th:action="@{/update-brewery}">
               <div class="card-body">
                 <div class="row">
                   <div class="col-10">
@@ -44,31 +45,32 @@
                       <label for="codeBrasserie" class="col-4">
                         Identifiant de la brasserie
                       </label>
-                      <input disabled id="codeBrasserie" class="col-8" th:value="${brasserieDetail.codeBrasserie}">
+                      <input id="codeBrasserie" name="codeBrasserie" class="col-8 disabled" th:value="${brasserieDetail.codeBrasserie}">
                     </div>
                     <div class="row input-form">
                       <label for="nomBrasserie" class="col-4">
                         Nom de la brasserie
                       </label>
-                      <input id="nomBrasserie" class="col-8" th:value="${brasserieDetail.nomBrasserie}">
+                      <input id="nomBrasserie" name="nomBrasserie" class="col-8" th:value="${brasserieDetail.nomBrasserie}">
                     </div>
                     <div class="row input-form">
                       <label for="ville" class="col-4">
                         Ville
                       </label>
-                      <input id="ville" class="col-8" th:value="${brasserieDetail.ville}">
+                      <input id="ville" name="ville" class="col-8" th:value="${brasserieDetail.ville}">
                     </div>
                     <div class="row input-form">
                       <label for="region" class="col-4">
                         Région
                       </label>
-                      <input id="region" class="col-8" th:value="${brasserieDetail.region}">
+                      <input id="region" name="region" class="col-8" th:value="${brasserieDetail.region}">
                     </div>
-                    <button type="submit" value="Add">Ajouter</button>
+                    <button type="submit" value="Update">Ajouter</button>
                   </div>
                 </div>
               </div>
               <div class="card-footer small text-muted"></div>
+              </form>
             </div>
           </div>
         </div>

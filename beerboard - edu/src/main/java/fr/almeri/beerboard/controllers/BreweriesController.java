@@ -68,10 +68,33 @@ public class BreweriesController {
             // Sinon On enregistre dans la BDD
             brasserieRepository.save(brasserie);
             // Envoie d'un message de succées
-            redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été modifier.");
+            redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été modifiée.");
             // Redirige vers la liste des brasseries
             return "redirect:/breweries";
         }
+
+    @GetMapping("/delete-brewery/{code}")
+    public String deleteBrewery(Model pModel, @PathVariable(required = true) String code){
+        //On récupére en bdd la brasserie dont l'ID (codeBrasserie) est = au code passé dans l'URL (http://localhost:8888/see-brewery/ache)
+        Brasserie brasserie = brasserieRepository.findById(code).orElseThrow();
+        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
+        pModel.addAttribute("brasserieDetail", brasserie);
+
+        ArrayList<Biere> listBiereFromDatabase = (ArrayList<Biere>) biereRepository.getMarqueVersionByCodeBrasserie(code);
+        pModel.addAttribute("biereBrasserieDetail", listBiereFromDatabase);
+
+        return "delete-brewery";
+    }
+
+    @PostMapping("/delete-brewery")
+    public String deleteBrewery(Model pModel, @ModelAttribute Brasserie brasserie, RedirectAttributes redirectAttributes){
+        // Sinon On enregistre dans la BDD
+        brasserieRepository.deleteById((brasserie.getCodeBrasserie()));
+        // Envoie d'un message de succées
+        redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été supprimée.");
+        // Redirige vers la liste des brasseries
+        return "redirect:/breweries";
+    }
 
 
     @GetMapping("/add-brewery")
