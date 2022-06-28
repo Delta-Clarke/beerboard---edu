@@ -83,7 +83,7 @@ public class BreweriesController {
         ArrayList<Biere> listBiereFromDatabase = (ArrayList<Biere>) biereRepository.getMarqueVersionByCodeBrasserie(code);
         pModel.addAttribute("biereBrasserieDetail", listBiereFromDatabase);
 
-        return "delete-brewery";
+        return "redirect:/breweries";
     }
 
     @PostMapping("/delete-brewery")
