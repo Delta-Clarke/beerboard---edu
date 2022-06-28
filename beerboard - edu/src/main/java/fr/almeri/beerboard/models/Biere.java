@@ -37,8 +37,8 @@ public class Biere {
     @Column(name = "caracteristiques")
     private String caracteristique;
 
-//    @Column(name = "no_type_str")
-//    private String noTypeStr;
+    @Transient
+    private String noTypeStr;
 
     //CONSTRUCTEUR
     public Biere() {}
@@ -93,13 +93,15 @@ public class Biere {
         this.caracteristique = pCaracteristique;
     }
 
-//    public String getNoTypeStr() {
-//        return noTypeStr;
-//    }
-//
-//    public void setNoTypeStr(String pNoTypeStr) {
-//        this.noTypeStr = pNoTypeStr;
-//    }
+    public String getNoTypeStr() {
+        return String.valueOf(type.getNoType());
+    }
+
+    public void setNoTypeStr(String pNoTypeStr) {
+        Type temp = new Type();
+        temp.setNoType(Integer.parseInt(pNoTypeStr));
+        this.type = temp;
+    }
 
     @Override
     public String toString() {

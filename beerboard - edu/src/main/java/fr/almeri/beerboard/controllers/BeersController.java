@@ -3,6 +3,7 @@ package fr.almeri.beerboard.controllers;
 import fr.almeri.beerboard.models.*;
 import fr.almeri.beerboard.repositories.BiereRepository;
 import fr.almeri.beerboard.repositories.MarqueRepository;
+import fr.almeri.beerboard.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class BeersController {
 
     @Autowired
     private MarqueRepository marqueRepository;
+
+    @Autowired
+    private TypeRepository typeRepository;
 
     @GetMapping("/beers")
     public String getListBeers(Model pModel){
@@ -45,22 +49,24 @@ public class BeersController {
     @GetMapping("/add-beer")
     public String setBrewery(Model pModel){
         ArrayList<Marque> listMarqueFromDatabase = (ArrayList<Marque>) marqueRepository.findAll();
-        pModel.addAttribute("listMarque", listMarqueFromDatabase);
+        pModel.addAttribute("listNomMarque", listMarqueFromDatabase);
+        ArrayList<Type> listTypeFromDatabase = (ArrayList<Type>) typeRepository.findAll();
+        pModel.addAttribute("listNoType", listTypeFromDatabase);
         return "add-beer";
     }
-    @PostMapping("/add-brewery")
+    @PostMapping("/add-beer")
     public String addBeer(Model pModel, @ModelAttribute Biere biere, RedirectAttributes redirectAttributes){
         // On vérifie si l'identifiant existe
-        if (biereRepository.existsById(marque.getNomMarque())){
+        if (biereRepository.existsById(new BiereId(biere.getMarque().getNomMarque(), biere.getVersion()))){
             // S'il existe, on renvoie un message d'erreur.
             redirectAttributes.addFlashAttribute("messageErreur", "L'identifiant existe déjà.");
             // On redirige vers le formulaire d'ajout
-            return "redirect:/add-brewery";
+            return "redirect:/add-beer";
         }else {
             // Sinon On enregistre dans la BDD
             biereRepository.save(biere);
             // Envoie d'un message de succées
-            redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été enregistrée.");
+            redirectAttributes.addFlashAttribute("messageSucces", "La biere a bien été enregistrée.");
             // Redirige vers la liste des brasseries
             return "redirect:/beers";
         }

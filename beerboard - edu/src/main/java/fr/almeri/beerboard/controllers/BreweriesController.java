@@ -50,6 +50,29 @@ public class BreweriesController {
 
         return "see-brewery";
     }
+    @GetMapping("/update-brewery/{code}")
+    public String updateBrewery(Model pModel, @PathVariable(required = true) String code){
+        //On récupére en bdd la brasserie dont l'ID (codeBrasserie) est = au code passé dans l'URL (http://localhost:8888/see-brewery/ache)
+        Brasserie brasserie = brasserieRepository.findById(code).orElseThrow();
+        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
+        pModel.addAttribute("brasserieDetail", brasserie);
+
+        ArrayList<Biere> listBiereFromDatabase = (ArrayList<Biere>) biereRepository.getMarqueVersionByCodeBrasserie(code);
+        pModel.addAttribute("biereBrasserieDetail", listBiereFromDatabase);
+
+        return "update-brewery";
+    }
+
+    @PostMapping("/update-brewery")
+    public String updateBrewery(Model pModel, @ModelAttribute Brasserie brasserie, RedirectAttributes redirectAttributes){
+            // Sinon On enregistre dans la BDD
+            brasserieRepository.save(brasserie);
+            // Envoie d'un message de succées
+            redirectAttributes.addFlashAttribute("messageSucces", "La brasserie a bien été modifier.");
+            // Redirige vers la liste des brasseries
+            return "redirect:/breweries";
+        }
+
 
     @GetMapping("/add-brewery")
     public String setBrewery(Model pModel){
@@ -63,10 +86,6 @@ public class BreweriesController {
     }
     @PostMapping("/add-brewery")
     public String addBrewery(Model pModel, @ModelAttribute Brasserie brasserie, RedirectAttributes redirectAttributes){
-        //On récupére en bdd la brasserie dont l'ID (codeBrasserie) est = au code passé dans l'URL (http://localhost:8888/see-brewery/ache)
-//        Brasserie brasserie = brasserieRepository.findById(code).orElseThrow();
-        // Permet d'envoyer les attribut récupéré en bdd pour l'envoyer sur le fichier HTML
-//        pModel.addAttribute("brasserieDetail", brasserie);
         // On vérifie si l'identifiant existe
         if (brasserieRepository.existsById(brasserie.getCodeBrasserie())){
             // S'il existe, on renvoie un message d'erreur.

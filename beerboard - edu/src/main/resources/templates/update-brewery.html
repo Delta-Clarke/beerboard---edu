@@ -25,69 +25,76 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-        <h1 class="mt-4">Ajouter une bière</h1>
+        <h1 class="mt-4"><span th:utext="${brasserieDetail.nomBrasserie}"></span></h1>
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item active"></li>
         </ol>
-        <div class="alert alert-danger" role="alert" th:text="${messageErreur}" th:if="${messageErreur}">
-        </div>
+
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-house me-1"></i>
-                Bière
+                Brasserie
               </div>
-
-              <form method="post" th:action="@{/add-beer}">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-10">
-                      <div class="row input-form">
-                        <label for="nomMarque" class="col-4">
-                          Marque de la bière
-                        </label>
-                        <select  id="nomMarque" name="marque" class="col-8">
-                          <option th:each="m:${listNomMarque}" th:value="${m.getNomMarque()}" th:utext="${m.getNomMarque()}"></option>
-                        </select>
-                      </div>
-                      <div class="row input-form">
-                        <label for="version" class="col-4">
-                          Version
-                        </label>
-                        <input id="version" name="version" class="col-8">
-                      </div>
-                      <div class="row input-form">
-                        <label for="noType" class="col-4">
-                          Type
-                        </label>
-                        <select  id="noType" name="noTypeStr" class="col-8">
-                        <option th:each="t:${listNoType}" th:value="${t.getNoType()}" th:utext="${t.getNomType()}"></option>
-                        </select>
-                      </div>
-                      <div class="row input-form">
-                        <label for="couleurBiere" class="col-4">
-                          Couleur de la bière
-                        </label>
-                        <input id="couleurBiere" name="couleurBiere" class="col-8">
-                      </div>
-                      <div class="row input-form">
-                        <label for="tauxAlcool" class="col-4">
-                          Taux d'alcool
-                        </label>
-                        <input id="tauxAlcool" name="tauxAlcool" class="col-8">
-                      </div>
-                      <div class="row input-form">
-                        <label for="caracteristique" class="col-4">
-                          Caractéristique
-                        </label>
-                        <input id="caracteristique" name="caracteristique" class="col-8">
-                      </div>
-                      <button type="submit" value="Add">Ajouter</button>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-10">
+                    <div class="row input-form">
+                      <label for="codeBrasserie" class="col-4">
+                        Identifiant de la brasserie
+                      </label>
+                      <input disabled id="codeBrasserie" class="col-8" th:value="${brasserieDetail.codeBrasserie}">
                     </div>
+                    <div class="row input-form">
+                      <label for="nomBrasserie" class="col-4">
+                        Nom de la brasserie
+                      </label>
+                      <input id="nomBrasserie" class="col-8" th:value="${brasserieDetail.nomBrasserie}">
+                    </div>
+                    <div class="row input-form">
+                      <label for="ville" class="col-4">
+                        Ville
+                      </label>
+                      <input id="ville" class="col-8" th:value="${brasserieDetail.ville}">
+                    </div>
+                    <div class="row input-form">
+                      <label for="region" class="col-4">
+                        Région
+                      </label>
+                      <input id="region" class="col-8" th:value="${brasserieDetail.region}">
+                    </div>
+                    <button type="submit" value="Add">Ajouter</button>
                   </div>
                 </div>
-              </form>
+              </div>
+              <div class="card-footer small text-muted"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-list me-1"></i>
+                Détails des marques et versions
+              </div>
+              <div class="card-body">
+                <table id="datatablesSimple">
+                  <thead>
+                  <tr>
+                    <th>Marque</th>
+                    <th>Version</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each=" biere :${biereBrasserieDetail}">
+                    <td th:text="${biere.getMarque().getNomMarque()}">...</td>
+                    <td th:text="${biere.version}">...</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
               <div class="card-footer small text-muted"></div>
             </div>
           </div>
