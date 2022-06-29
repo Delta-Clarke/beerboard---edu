@@ -33,8 +33,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String home(Model pModel, HttpSession pSession){
-        pModel.addAttribute("bieres", 328);
-        pModel.addAttribute("brasseries", 99);
+        pModel.addAttribute("bieres", biereRepository.count());
+        pModel.addAttribute("brasseries", brasserieRepository.count());
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
         pModel.addAttribute("updated", dtf.format(LocalDateTime.now()));

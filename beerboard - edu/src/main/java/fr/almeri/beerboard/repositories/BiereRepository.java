@@ -31,5 +31,4 @@ public interface BiereRepository extends CrudRepository<Biere, BiereId> {
 
     @Query("select b from Biere b where b.marque.brasserie.codeBrasserie = :code order by b.marque.nomMarque, b.version asc")
     public ArrayList<Biere> getMarqueVersionByCodeBrasserie(String code);
-
 }

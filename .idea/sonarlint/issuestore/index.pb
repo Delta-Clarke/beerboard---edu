@@ -9,5 +9,3 @@ Tbeerboard - edu/src/main/java/fr/almeri/beerboard/controllers/ExampleController
 Tbeerboard - edu/src/main/java/fr/almeri/beerboard/controllers/ProfileController.java,e\e\ee69cb61753abb0a649af2cf6f26996d9100c729
 u
 Ebeerboard - edu/src/main/java/fr/almeri/beerboard/models/BiereId.java,b\a\baeb5889440e57b94aaa4b0b1f57c2d0eb8f1860
-‚
-Rbeerboard - edu/src/main/java/fr/almeri/beerboard/controllers/IndexController.java,7\2\72e955312bddf9d219a2604a0d23529e193f9d4e
