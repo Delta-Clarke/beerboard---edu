@@ -6776,6 +6776,10 @@ textarea.form-control-lg {
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 
+.shadow-int {
+  box-shadow: inset 0px 0px 9px 4px rgba(70, 70, 70, 0.75);
+}
+
 .shadow-none {
   box-shadow: none !important;
 }
@@ -11782,5 +11786,24 @@ body {
     fill: #212529;
   }
 
+  .custom-shape-divider-top-1656502919 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-shape-divider-top-1656502919 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 49px;
+  }
+
+  .custom-shape-divider-top-1656502919 .shape-fill {
+    fill: #F8F9FA;
+  }
 
 }
